@@ -1,0 +1,6 @@
+<div id='books'>
+    <div class='book' ng-repeat='book in $ctrl.books'>
+        <img ng-src='{{book.image || book.thumbnail}}'>
+        {{book.title}} by {{book.authors.join(', ')}}
+    </div>
+</div>

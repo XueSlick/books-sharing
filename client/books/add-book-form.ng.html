@@ -1,0 +1,14 @@
+<form ng-submit='$ctrl.addBook()'>
+    <div class='input-group'>
+        <input type='text' class='form-control' ng-model='$ctrl.title' id='newBook' ng-disabled='$ctrl.awaitingResponse' 
+            tabindex='1' placeholder='Title' autocomplete='off' autofocus
+        >
+        <span class='input-group-btn'>
+            <input type='submit' class='btn btn-success' id='addBookBtn' value='Search' ng-hide='$ctrl.awaitingResponse' ng-disabled='!$ctrl.title'>
+            <img alt='loading...' src='/images/loader-pacman.gif' ng-show='$ctrl.awaitingResponse'>
+        </span>
+    </div>
+    <div class='error'>
+        <span id='errorMessage' ng-show='error'>{{error}}</span>
+    </div>
+</form>
