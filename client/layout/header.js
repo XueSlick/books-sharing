@@ -15,7 +15,7 @@ class HeaderController {
     }
 }
 
-export default angular.module('booksrus.layout')
+angular.module('booksrus.layout')
 .component('header', {
     templateUrl: 'client/layout/header.ng.html',
     controller: ['$scope', HeaderController]

@@ -19,7 +19,7 @@ class BooksListController {
     }
 }
 
-export default angular.module('booksrus.books')
+angular.module('booksrus.books')
 .component('booksList', {
     templateUrl: 'client/books/books-list.ng.html',
     controller: ['$scope', BooksListController]
