@@ -13,7 +13,11 @@ class BooksListController {
         
         this.helpers({
             books() {
-                return Books.find({}, {sort: {createdAt: -1}})
+                return Books.find({
+                    ownerId: {$ne: Meteor.userId()}
+                }, {
+                    sort: {createdAt: -1}
+                })
             }
         })
     }
