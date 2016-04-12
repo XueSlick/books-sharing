@@ -2,14 +2,15 @@ import { check } from 'meteor/check'
 
 import RequestStatus from './requestStatus'
 
-const PROPERTIES = {
-    'title': true,
-    'authors': true,
-    'thumbnail': true,
-    'ownerId': true,
-    'ownerUsername': true,
-    'status': true
-}
+const PROPERTIES = [
+    'title',
+    'authors',
+    'thumbnail',
+    'ownerId',
+    'ownerUsername',
+    'status',
+    'statusText'
+]
 
 export default class Book {
     constructor(title, authors, thumbnailUrl) {
@@ -20,7 +21,7 @@ export default class Book {
         this.title = title
         this.authors = authors
         this.thumbnail = thumbnailUrl
-        this.status = RequestStatus.AVAILABLE
+        this.setStatus(RequestStatus.AVAILABLE)
     }
     
     setOwnerId(userId) {
@@ -33,10 +34,16 @@ export default class Book {
         this.ownerUsername = username
     }
     
+    setStatus(statusCode) {
+        this.status = statusCode
+        this.statusText = RequestStatus.statusText(statusCode)
+    }
+    
     static isBook(obj) {
         if(!obj) return false
         
-        for(prop in PROPERTIES) {
+        for(let i in PROPERTIES) {
+            let prop = PROPERTIES[i]
             if(obj[prop] === undefined) {
                 return false
             }
@@ -51,9 +58,9 @@ export default class Book {
         }
         
         var newBook = {}
-        for(prop in PROPERTIES) {
+        PROPERTIES.forEach(function(prop) {
             newBook[prop] = obj[prop]
-        }
+        })
         return newBook
     }
 }
