@@ -8,20 +8,21 @@ const PROPERTIES = [
     'thumbnail',
     'ownerId',
     'ownerUsername',
-    'status',
-    'statusText'
+    'available'
 ]
 
 export default class Book {
-    constructor(title, authors, thumbnailUrl) {
+    constructor(title, authors, thumbnailUrl, available) {
         check(title, String)
         check(authors, Array)
         check(thumbnailUrl, String)
+        if(available !== undefined)
+            check(available, Boolean)
         
         this.title = title
         this.authors = authors
         this.thumbnail = thumbnailUrl
-        this.setStatus(RequestStatus.AVAILABLE)
+        this.available = available !== undefined ? available : true
     }
     
     setOwnerId(userId) {
@@ -32,11 +33,6 @@ export default class Book {
     setOwnerUsername(username) {
         check(username, String)
         this.ownerUsername = username
-    }
-    
-    setStatus(statusCode) {
-        this.status = statusCode
-        this.statusText = RequestStatus.statusText(statusCode)
     }
     
     static isBook(obj) {

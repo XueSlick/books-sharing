@@ -1,6 +1,5 @@
 const RequestStatus = {}
 const PROPERTIES = {
-    'AVAILABLE': 0,
     'PENDING': 1,
     'CANCELLED': 2,
     'ACCEPTED': 3,
