@@ -15,15 +15,15 @@
             <div ng-show='$ctrl.username()'>
                 <ul class='nav navbar-nav navbar-left'>
                     <li>
-                        <a href='#' class='glyphicon-plus'> Create poll</a>
+                        <a href='/books/add' class='glyphicon-plus'>Add Book</a>
                     </li>
                     <li>
-                        <a href='#'>My Polls</a>
+                        <a href='#'>Requests</a>
                     </li>
                 </ul>
                 <ul class='nav navbar-nav navbar-right'>
                     <li>
-                        <a> Hi, {{$ctrl.username}}</a>
+                        <a> Hi, {{$ctrl.username()}}</a>
                     </li>
                     <li>
                         <a href='/auth/logout'>logout</a>

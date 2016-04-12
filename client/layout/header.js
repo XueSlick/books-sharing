@@ -9,6 +9,10 @@ class HeaderController {
     constructor($scope) {        
         $scope.viewModel(this)
     }
+    
+    username() {
+        return Meteor.user() && Meteor.user().username
+    }
 }
 
 export default angular.module('booksrus.layout')
