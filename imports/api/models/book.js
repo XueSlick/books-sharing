@@ -1,11 +1,14 @@
 import { check } from 'meteor/check'
 
+import RequestStatus from './requestStatus'
+
 const PROPERTIES = {
     'title': true,
     'authors': true,
     'thumbnail': true,
     'ownerId': true,
-    'ownerUsername': true
+    'ownerUsername': true,
+    'status': true
 }
 
 export default class Book {
@@ -17,6 +20,7 @@ export default class Book {
         this.title = title
         this.authors = authors
         this.thumbnail = thumbnailUrl
+        this.status = RequestStatus.AVAILABLE
     }
     
     setOwnerId(userId) {
