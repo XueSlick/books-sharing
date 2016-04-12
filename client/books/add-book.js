@@ -5,7 +5,7 @@ import angularMeteor from 'angular-meteor'
 import './books.modules'
 
 import { Books } from '../../imports/api/books' 
-import template from './add-book-form.ng.html'
+import template from './add-book.ng.html'
 
 var _showErrorMessage = message => {
     console.log(message)
@@ -34,7 +34,7 @@ class AddBookController {
 }
 
 angular.module('booksrus.books')
-.component('addBookForm', {
-    templateUrl: 'client/books/add-book-form.ng.html',
+.component('addBook', {
+    templateUrl: 'client/books/add-book.ng.html',
     controller: ['bookDataService', '$scope', AddBookController]
 })

@@ -11,6 +11,6 @@ angular.module('booksrus.books.routes')
     })
     .state('addBook', {
         url: '/books/add',
-        template: '<add-book-form></add-book-form>'
+        template: '<add-book></add-book>'
     })
 })
