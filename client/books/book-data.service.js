@@ -7,7 +7,7 @@ angular.module('booksrus.books.services', [])
     function getBooksByTitle(title, callback) {
         if(!title) throw new Error('Title is required')
         
-        var path = '/books/v1/volumes?q=+intitle=#title#&orderBy=relevance'
+        var path = '/books/v1/volumes?q=+intitle=#title#&orderBy=relevance&maxResults=5'
                 .replace(/#title#/g, title)
                                 
         var options = {
