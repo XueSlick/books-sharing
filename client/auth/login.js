@@ -1,39 +1,47 @@
 import angular from 'angular'
 import angularMeteor from 'angular-meteor'  
 import angularComponent from 'angular-component'
-
-// import template from './login.ng.html'
+import { Meteor } from 'meteor/meteor'
 
 function _showMessage(viewModel, message) {
-    console.log(message)
+    viewModel.error = message
+}
+
+function _clearMessage(viewModel, message) {
+    viewModel.error = ''
 }
 
 class LoginController {
-    constructor($scope) {
-        $scope.viewModel = this
+    constructor($scope, $location) {
+        $scope.viewModel(this)
+        this._$location = $location
+
+        Meteor.subscribe('userData');
     }
     
     login() {
-        if(!this.username) {
-            return _showMessage(this, 'Username is required')
-        } else if(!this.password) {
-            return _showMessage(this, 'Password is required')
+        var vm = this
+        if(!vm.username) {
+            return _showMessage(vm, 'Username is required')
+        } else if(!vm.password) {
+            return _showMessage(vm, 'Password is required')
         }
-        
-        Meteor.loginWithPassword(this.username, this.password, function(err, result) {
-            if(err) return _showMessage(this, err.message)            
-        })
-    }
-    
-    logout() {
-        Meteor.logout(err => {
-            if(err) _showMessage(this, err.message)
+
+        Meteor.loginWithPassword(vm.username, vm.password, function(err) {
+            if(err) {
+                if(err.error == 403) 
+                    return _showMessage(vm, 'Invalid username or password.')
+                else
+                    return _showMessage(vm, err.reason)
+            }
+            
+            vm._$location.path('/')            
         })
     }
 }
 
-export default angular.module('booksrus.auth')
+angular.module('booksrus.auth')
 .component('login', {
     templateUrl: 'client/auth/login.ng.html',
-    controller: ['$scope', LoginController]
+    controller: ['$scope', '$location', LoginController]
 })

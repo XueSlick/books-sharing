@@ -9,12 +9,14 @@ angular.module('booksrus.auth.routes')
     $stateProvider
     .state('login', {
         url: '/auth/login',
-        templateUrl: 'login.html',
-        controller: 'LoginController'
+        template: '<login></login>'
     })
     .state('register', {
         url: '/auth/register',
-        templateUrl: 'register.html',
-        controller: 'RegisterController'
+        template: '<register></register>'
+    })
+    .state('logout', {
+        url: '/auth/logout',
+        template: '<logout></logout>'
     })
 })

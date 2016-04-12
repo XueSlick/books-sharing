@@ -3,5 +3,18 @@ import { Meteor } from 'meteor/meteor';
 import '../imports/api/books'
 
 Meteor.startup(() => {
-  // code to run on server at startup
+    Meteor.publish('usersData', function() {
+        if(this.userId) {
+            return Meteor.users.find({_id: this.userId}, 
+                    {fields: 'profile'})
+        } else {
+            return this.ready()
+        }
+    })
+    
+    Meteor.users.deny({
+        update() {
+            return true
+        }
+    })
 });

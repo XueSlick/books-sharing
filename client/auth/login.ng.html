@@ -1,16 +1,16 @@
-<div ng-app='auth'>
-    <form ng-submit='login()'>
+<div id='login-form' class='form'>
+    <form ng-submit='$ctrl.login()'>
         <h2 class='form-heading'>Log In</h2>
         <fieldset>
-            <input type='text' class='form-control' id='username' ng-model='$ctrl.username' placeholder='Username' required autofocus>
-            <input type='password' class='form-control' id='password' ng-model='$ctrl.password' placeholder='Password' required>
-            <!--<div class='checkbox'>
+            <input type='text' class='form-control' id='username' ng-model='$ctrl.username' ng-change='$ctrl.error=""' placeholder='Username' required autofocus>
+            <input type='password' class='form-control' id='password' ng-model='$ctrl.password' ng-change='$ctrl.error=""' placeholder='Password' required>
+            <div class='checkbox'>
                 <label for='rememberMe'>
                     <input type='checkbox' id='rememberMe' name='rememberMe'>
                     <span> Remember me</span>
                 </label>
-            </div>-->
-            <span class='form-error' ng-show="$ctrl.error">{{$ctrl.error}}</span>
+            </div>
+            <error ng-show='$ctrl.error' message='$ctrl.error'></error>
             <input type='submit' id='btnSubmit' value="Login" class='btn btn-lg btn-primary btn-block'>
         </fieldset>
     </form>

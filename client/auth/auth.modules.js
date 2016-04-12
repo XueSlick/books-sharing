@@ -2,6 +2,8 @@ import angular from 'angular'
 import angularMeteor from 'angular-meteor'
 import uiRouter from 'angular-ui-router';
 
+import '../notifications/notifications.modules'
 
-export default angular.module('booksrus.auth', [])
-export default angular.module('booksrus.auth.routes', [uiRouter])
+
+angular.module('booksrus.auth', ['booksrus.ui.notifications'])
+angular.module('booksrus.auth.routes', ['booksrus.auth', uiRouter])

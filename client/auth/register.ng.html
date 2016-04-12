@@ -1,0 +1,19 @@
+<div id='login-form' class='form'>
+    <form ng-submit='$ctrl.register()' class='form'>
+        <h2 class='form-heading'>Sign Up</h2>
+        <fieldset>
+            <input type='text' class='form-control' id='username' ng-model='$ctrl.username' placeholder='Username' required autofocus>
+            <input type='password' class='form-control' id='password' ng-model='$ctrl.password' placeholder='Password' required>
+            <input type='password' class='form-control' id='confirm-pass' ng-model='$ctrl.confirmPassword' placeholder='Confirm password' required>
+            
+            <input type='text' class='form-control' ng-model='$ctrl.fullname' placeholder='Full name' required>             
+            <input type='text' class='form-control' ng-model='$ctrl.city' placeholder="City" required>
+            <select id='state' class='form-control' ng-model='$ctrl.state' ng-options='state for state in $ctrl.states' required>
+                <option value=''>State</option>
+                <!--<option value='{{state}}' ng-repeat='state in $ctrl.states'>{{state}}</option>-->
+            </select>
+            <error ng-show='$ctrl.error' message='$ctrl.error'></error>
+            <input type='submit' id='btnSubmit' value="Register" class='btn btn-lg btn-primary btn-block'>
+        </fieldset>
+    </form>
+</div>
