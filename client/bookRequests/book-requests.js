@@ -11,14 +11,13 @@ function _updateRequestStatus(request, status) {
     Meteor.call('bookrequests.setStatus', request._id, status)
     
     //FIXME: Is the controller really the best place for this logic?
-    var bookAvailable = status != RequestStatus.ACCEPTED 
+    var bookAvailable = status != RequestStatus.ACCEPTED
     Meteor.call('books.setAvailable', request.book._id, bookAvailable)
 }
 
 class BookRequestsController {
-    constructor($scope, $location) {
+    constructor($scope) {
         $scope.viewModel(this)
-        this._$location = $location
         Meteor.subscribe('bookrequests');
         
         this.helpers({
@@ -69,5 +68,5 @@ class BookRequestsController {
 angular.module('booksrus.requests')
 .component('bookRequests', {
     templateUrl: 'client/bookRequests/book-requests.ng.html',
-    controller: ['$scope', '$location', BookRequestsController]
+    controller: ['$scope', BookRequestsController]
 })
