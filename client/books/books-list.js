@@ -2,7 +2,10 @@ import angular from 'angular'
 import angularMeteor from 'angular-meteor'
 
 import './books.modules'
-import { Books } from '../../imports/api/books' 
+import Book from '../../imports/api/models/book' 
+import BookRequest from '../../imports/api/models/bookRequest' 
+import { Books } from '../../imports/api/books'
+
 import template from './books-list.ng.html'
 
 class BooksListController {
@@ -13,6 +16,7 @@ class BooksListController {
         
         this.helpers({
             books() {
+                //TODO: Add option to show all Books or only available ones
                 return Books.find({
                     available: true,
                     ownerId: { $ne: Meteor.userId() }
@@ -21,6 +25,14 @@ class BooksListController {
                 })
             }
         })
+    }
+    
+    requestBook(book) {
+        book = Book.mapToBook(book)
+        var request = new BookRequest(Meteor.userId(), book.ownerId, book)
+        Meteor.call('bookrequests.insert', request)
+        // Restrict active requests to one per book
+        Meteor.call('books.setAvailable', book._id, false)
     }
 }
 
