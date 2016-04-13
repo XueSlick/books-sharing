@@ -14,7 +14,7 @@ RequestStatus.isValid = function(statusCode) {
 
 RequestStatus.statusText = function(statusCode) {
     if(!RequestStatus.isValid(statusCode))
-        throw new ValueError('Invalid status code')
+        throw new Meteor.Error('Invalid status code')
     return STATUS_CODE_LOOKUP[statusCode]
 }
 
