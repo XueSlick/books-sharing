@@ -8,7 +8,13 @@ const BookRequests = new Mongo.Collection('bookrequests')
 
 if(Meteor.isServer) {
     Meteor.publish('bookrequests', function bookRequestsPublication() {
-        return BookRequests.find({})
+        var userId = this.userId
+        return BookRequests.find({
+            $or: [
+                { requestorId: userId },
+                { ownerId: userId } 
+            ]
+        })
     })
 }
 
