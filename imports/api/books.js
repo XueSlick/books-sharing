@@ -31,4 +31,13 @@ Meteor.methods({
         
         Books.insert(bookRecord)
     },
+    
+    'books.setAvailable'(bookId, available) {
+        check(bookId, String)
+        check(available, Boolean)
+        
+        Books.update(bookId, {
+            $set: { available: available }
+        })
+    }
 })
