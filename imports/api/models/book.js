@@ -2,13 +2,17 @@ import { check } from 'meteor/check'
 
 import RequestStatus from './requestStatus'
 
-const PROPERTIES = [
+const REQUIRED_PROPERTIES = [
     'title',
     'authors',
     'thumbnail',
     'ownerId',
     'ownerUsername',
     'available'
+]
+
+const OPTIONAL_PROPERTIES = [
+    '_id'    
 ]
 
 export default class Book {
@@ -38,8 +42,8 @@ export default class Book {
     static isBook(obj) {
         if(!obj) return false
         
-        for(let i in PROPERTIES) {
-            let prop = PROPERTIES[i]
+        for(let i in REQUIRED_PROPERTIES) {
+            let prop = REQUIRED_PROPERTIES[i]
             if(obj[prop] === undefined) {
                 return false
             }
@@ -54,9 +58,10 @@ export default class Book {
         }
         
         var newBook = {}
-        PROPERTIES.forEach(function(prop) {
+        REQUIRED_PROPERTIES.concat(OPTIONAL_PROPERTIES).forEach(function(prop) {
             newBook[prop] = obj[prop]
         })
+        
         return newBook
     }
 }

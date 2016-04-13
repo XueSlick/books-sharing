@@ -1,0 +1,16 @@
+<div id='requests'>
+    <div id='users-requests'>
+        <h2>Sent Requests</h2>
+        <div ng-repeat='request in $ctrl.usersRequests' ng-show='$ctrl.usersRequests'>
+            <img ng-src='{{request.book.thumbnail}}'>
+        </div>
+        <span ng-show='$ctrl.usersRequests.length < 1'>You have not requested any books yet.</span>
+    </div>
+    
+    <div id='pending-requests' ng-show='$ctrl.pendingRequests.length >= 1'>
+        <h2>Pending Requests</h2>
+        <div ng-repeat='request in $ctrl.pendingRequests'>
+            <img ng-src='{{request.book.thumbnail}}'>            
+        </div>
+    </div>
+</div>

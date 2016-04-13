@@ -7,6 +7,8 @@ var dependencies = [
     angularMeteor,
     'booksrus.books',
     'booksrus.books.routes',
+    'booksrus.requests',
+    'booksrus.requests.routes',      
     'booksrus.auth',
     'booksrus.auth.routes',    
     'booksrus.layout'

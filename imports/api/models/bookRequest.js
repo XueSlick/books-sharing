@@ -1,16 +1,19 @@
 import { check } from 'meteor/check'
 
 import RequestStatus from './requestStatus'
+import Book from './book'
 
 export default class BookRequest {
-    constructor(requestor, owner, bookId) {
-        check(bookId, String)
-        check(requestor.fullname, String)
-        check(owner.fullname, String)
+    constructor(requestorId, ownerId, book) {
+        check(requestorId, String)
+        check(ownerId, String)
+        if(!Book.isBook(book)) {
+            throw new TypeError('book must be a Book')
+        }
         
-        this.owner = owner
-        this.requestor = requestor
-        this.bookId = bookId
+        this.ownerId = ownerId
+        this.requestorId = requestorId
+        this.book = book
         this.status = RequestStatus.PENDING
     }
 }

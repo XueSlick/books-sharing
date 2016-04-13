@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import '../imports/api/books'
+import '../imports/api/bookRequests'
 
 Meteor.startup(() => {
     Meteor.publish('usersData', function() {
