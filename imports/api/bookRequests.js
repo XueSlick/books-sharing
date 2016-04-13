@@ -21,7 +21,7 @@ Meteor.methods({
     
     'bookrequests.setStatus'(requestId, status) {
         check(requestId, String)
-        check(status, Boolean)    
+        check(status, Number)    
         BookRequests.update(requestId, {
             $set: {status: status}
         })
