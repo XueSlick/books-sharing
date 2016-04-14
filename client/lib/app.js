@@ -6,6 +6,7 @@ var dependencies = [
     'ui.router',
     angularMeteor,
     'booksrus.books',
+    'booksrus.utils',
     'booksrus.books.routes',
     'booksrus.requests',
     'booksrus.requests.routes',      
@@ -32,3 +33,13 @@ angular.module('booksrus', dependencies)
     $urlRouterProvider.otherwise('/error/notfound');
     
 })
+.run(function run($rootScope, $state) {
+    'ngInject'
+    
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+        if(error == 'AUTH_REQUIRED') {
+            $state.go('login')
+        }
+    })
+})
+
