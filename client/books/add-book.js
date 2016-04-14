@@ -12,12 +12,12 @@ var _showErrorMessage = message => {
 }
 
 class AddBookController {
-    constructor($scope, $location, bookDataService) {      
+    constructor($scope, $reactive, bookDataService) {      
         $scope.viewModel(this)
+        $reactive(this).attach($scope)
         this.subscribe('books')
 
         this.title = ''
-        this._$location = $location
         this._dataService = bookDataService
     }
     
@@ -37,13 +37,16 @@ class AddBookController {
         book.setOwnerUsername(Meteor.user().username)
         
         //Map to Book object to remove any properties added by Angular
-        Meteor.call('books.insert', Book.mapToBook(book))
-        this._$location.path('/books')
+        book = Book.mapToBook(book)
+        this.apply('books.insert', [book], function(err) {
+            if(err) return _showErrorMessage(err.reason)
+            this.matchingBooks = null
+        })
     }
 }
 
 angular.module('booksrus.books')
 .component('addBook', {
     templateUrl: 'client/books/add-book.ng.html',
-    controller: ['$scope', '$location', 'bookDataService', AddBookController]
+    controller: ['$scope', '$reactive', 'bookDataService', AddBookController]
 })

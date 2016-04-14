@@ -1,0 +1,9 @@
+<add-book></add-book>
+<div id='my-books'>
+    <h3>My Books</h3>
+    <div id='books' class='books-container'>
+        <div class='book' ng-repeat='book in $ctrl.books'>
+            <img ng-src='{{book.thumbnail}}'>
+        </div>
+    </div>
+</div>

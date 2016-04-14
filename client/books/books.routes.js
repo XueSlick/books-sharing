@@ -11,8 +11,8 @@ angular.module('booksrus.books.routes')
         resolve: routeAuthenticationProvider.check
     })
     .state('addBook', {
-        url: '/books/add',
-        template: '<add-book></add-book>',
+        url: '/books/mybooks',
+        template: '<my-books></my-books>',
         resolve: routeAuthenticationProvider.check
     })
 })
