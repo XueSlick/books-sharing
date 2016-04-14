@@ -21,7 +21,7 @@ function _clearMessage(viewModel, message) {
 
 class UpdateProfileController {
     constructor($scope, $location, $reactive) {
-        $scope.viewModel(this)
+        $reactive(this).attach($scope)
         Meteor.subscribe('userData');
         
         if(!Meteor.user() && Meteor.userId()) {
@@ -34,13 +34,7 @@ class UpdateProfileController {
         this.states = StatesList
         
         this._$location = $location
-        this.awaitingResponse = false
-        
-        //FIXME: Hack to refresh UI after an external event
-        this._$digest = function() {
-            $scope.$digest()
-        }
-        
+        this.awaitingResponse = false        
     }
     
     save() {
@@ -61,13 +55,11 @@ class UpdateProfileController {
         profile.fullname = vm.fullname
         
         vm.awaitingResponse = true
-        Meteor.users.update(Meteor.userId(), {
-            $set: {profile: profile}
-        }, function(err) {
+        
+        this.apply('updateProfile', [profile], function(err) {
             vm.awaitingResponse = false
             if(err) return _showMessage(vm, err.reason)
             _showSuccessMessage(vm, 'Profile updated.')
-            vm._$digest()
         })
     }
 }

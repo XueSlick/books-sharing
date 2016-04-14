@@ -11,4 +11,12 @@ Meteor.startup(() => {
             return this.ready() 
         }
     })
+    
+    Meteor.methods({
+        'updateProfile'(profile) {
+            Meteor.users.update(this.userId, {
+                $set: {profile: profile}
+            })
+        }
+    })
 });
