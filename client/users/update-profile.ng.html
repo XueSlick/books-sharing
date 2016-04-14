@@ -1,0 +1,17 @@
+<div id='update-profile-form' class='form'>
+    <form ng-submit='$ctrl.save()' ng-disabled='$ctrl.awaitingResponse' class='form'>
+        <h2 class='form-heading'>Profile</h2>
+        <fieldset>
+            <input type='text' class='form-control' ng-model='$ctrl.fullname' placeholder='Full name' required>             
+            <input type='text' class='form-control' ng-model='$ctrl.city' placeholder='City' required>
+            <select id='state' class='form-control' ng-model='$ctrl.state' ng-options='state for state in $ctrl.states' required></select>
+            <error ng-show='$ctrl.error' message='$ctrl.error'></error>
+            <success ng-show='$ctrl.successMessage' message='$ctrl.successMessage'></success>            
+            <button id='btnSubmit' value='Save' class='btn btn-lg btn-primary btn-block'>
+                <span ng-show='$ctrl.awaitingResponse' class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>
+                <span ng-hide='$ctrl.awaitingResponse'>Save</span>
+                <span ng-show='$ctrl.awaitingResponse'>Saving...</span>            
+            </button>
+        </fieldset>
+    </form>
+</div>

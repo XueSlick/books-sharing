@@ -6,16 +6,9 @@ import '../imports/api/bookRequests'
 Meteor.startup(() => {
     Meteor.publish('usersData', function() {
         if(this.userId) {
-            return Meteor.users.find({_id: this.userId}, 
-                    {fields: 'profile'})
+            return Meteor.users.find({_id: this.userId})
         } else {
-            return this.ready()
-        }
-    })
-    
-    Meteor.users.deny({
-        update() {
-            return true
+            return this.ready() 
         }
     })
 });

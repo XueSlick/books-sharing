@@ -10,7 +10,9 @@ var dependencies = [
     'booksrus.requests',
     'booksrus.requests.routes',      
     'booksrus.auth',
-    'booksrus.auth.routes',    
+    'booksrus.auth.routes',
+    'booksrus.users',
+    'booksrus.users.routes',
     'booksrus.layout'
 ]
 
