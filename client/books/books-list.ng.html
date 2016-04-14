@@ -1,7 +1,15 @@
+<ul class='nav nav-pills' role='tablist'>
+  <li role='presentation' class='active'>
+      <a href='#' ng-click='$ctrl.showAvailable()' data-toggle='tab'>Available</a>
+    </li>
+  <li role='presentation'>
+      <a href='#' ng-click='$ctrl.showAll()' data-toggle='tab'>All</a>
+  </li>
+</ul>
 <div id='books'>
     <div class='book' ng-repeat='book in $ctrl.books'>
         <img ng-src='{{book.image || book.thumbnail}}'>
         <br>
-        <input type='button' class='btn btn-primary' value='Request' ng-click='$ctrl.requestBook(book)'>
+        <input type='button' class='btn btn-primary' value='Request' ng-hide='!book.available' ng ng-click='$ctrl.requestBook(book)'>
     </div>
 </div>

@@ -14,13 +14,15 @@ class BooksListController {
         
         this.subscribe('books')
         
+        this.onlyShowAvailable = true
+        
         this.helpers({
             books() {
-                //TODO: Add option to show all Books or only available ones
-                return Books.find({
-                    available: true,
-                    ownerId: { $ne: Meteor.userId() }
-                }, {
+                var selector = {ownerId: { $ne: Meteor.userId() }}
+                if(this.getReactively('onlyShowAvailable')) {
+                   selector.available = true 
+                }
+                return Books.find(selector, {
                     sort: { createdAt: -1 }
                 })
             }
@@ -33,6 +35,14 @@ class BooksListController {
         Meteor.call('bookrequests.insert', request)
         // Restrict active requests to one per book
         Meteor.call('books.setAvailable', book._id, false)
+    }
+    
+    showAll() {
+        this.onlyShowAvailable = false
+    }
+    
+    showAvailable() {
+        this.onlyShowAvailable = true
     }
 }
 
