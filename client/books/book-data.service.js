@@ -3,7 +3,7 @@ import angular from 'angular'
 import Book from '../../imports/api/models/book'
 
 angular.module('booksrus.books.services', [])
-.factory('bookDataService', ['$http', function($http) {
+.factory('bookDataService', function($http) {
     function getBooksByTitle(title, callback) {
         if(!title) throw new Error('Title is required')
         
@@ -47,4 +47,4 @@ angular.module('booksrus.books.services', [])
     return {
         getBooksByTitle: getBooksByTitle
     }
-}])
+})

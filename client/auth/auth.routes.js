@@ -3,9 +3,7 @@ import angular from 'angular'
 import './auth.modules'
 
 angular.module('booksrus.auth.routes')
-.config(function($urlRouterProvider, $stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true)
-    
+.config(function($stateProvider) {    
     $stateProvider
     .state('login', {
         url: '/auth/login',
