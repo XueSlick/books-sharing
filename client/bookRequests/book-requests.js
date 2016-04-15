@@ -60,6 +60,15 @@ class BookRequestsController {
         return RequestStatus.statusText(request.status)
     }
     
+    getStatusColorClass(request) {
+        if(request.status == RequestStatus.REJECTED){
+            return 'red-text'
+        }
+        if(request.status == RequestStatus.ACCEPTED) {
+            return 'green-text'
+        }
+    }
+    
     isPending(request) {
         return request.status == RequestStatus.PENDING
     }

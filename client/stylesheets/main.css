@@ -7,3 +7,11 @@
 .not-visible {
     visibility: hidden;
 }
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+}
