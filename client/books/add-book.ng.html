@@ -17,7 +17,7 @@
     <div id='results' class='books-container' ng-show='$ctrl.matchingBooks.length > 0'>
         <h2>Matching Books</h2>
         <div class='book' ng-repeat='book in $ctrl.matchingBooks' ng-click='$ctrl.addBook(book)'>
-            <img ng-src='{{book.thumbnail}}'>
+            <img class='book-thumbnail' ng-src='{{book.thumbnail}}'>
             <span>{{book.title}} by {{book.authors.join(', ')}}</span>
         </div>
     </div>

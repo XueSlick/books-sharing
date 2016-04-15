@@ -1,0 +1,14 @@
+.books-container {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.book {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 25px;
+}
+
+.book-thumbnail {
+    height: 160px;
+}

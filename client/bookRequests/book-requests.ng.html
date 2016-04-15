@@ -1,31 +1,37 @@
 <div id='requests'>
     <div id='users-requests'>
         <h2>Sent Requests</h2>
-        <div ng-repeat='request in $ctrl.usersRequests' ng-show='$ctrl.usersRequests'>
-            <img ng-src='{{request.book.thumbnail}}'>
-            {{$ctrl.statusText(request)}}
-            <input type='button' class='btn btn-danger' value='Cancel' 
-                ng-click='$ctrl.cancel(request)'
-                ng-show='$ctrl.isPending(request)'>
+        <div class='books-container'>        
+            <div ng-repeat='request in $ctrl.usersRequests' class='book' ng-show='$ctrl.usersRequests'>
+                <img class='book-thumbnail' ng-src='{{request.book.thumbnail}}'>
+                {{$ctrl.statusText(request)}}
+                <input type='button' class='btn btn-danger' value='Cancel' 
+                    ng-click='$ctrl.cancel(request)'
+                    ng-class='{"not-visible": !$ctrl.isPending(request)}'>
+            </div>
+            <span ng-show='$ctrl.usersRequests.length < 1'>You have not requested any books yet.</span>
         </div>
-        <span ng-show='$ctrl.usersRequests.length < 1'>You have not requested any books yet.</span>
     </div>
     
     <div id='pending-requests' ng-show='$ctrl.pendingRequests.length >= 1'>
         <h2>Pending Requests</h2>
-        <div ng-repeat='request in $ctrl.pendingRequests'>
-            <img ng-src='{{request.book.thumbnail}}'>
-            <div ng-show='$ctrl.isPending(request)'>
-                <input type='button' class='btn btn-success' value='Approve' ng-click='$ctrl.approve(request)'>
-                <input type='button' class='btn btn-danger' value='Reject' ng-click='$ctrl.reject(request)'>
-            </div>            
+        <div class='books-container'>
+            <div ng-repeat='request in $ctrl.pendingRequests' class='book'>
+                <img class='book-thumbnail' ng-src='{{request.book.thumbnail}}'>
+                <div ng-class='{"not-visible": !$ctrl.isPending(request)}'>
+                    <input type='button' class='btn btn-success' value='Approve' ng-click='$ctrl.approve(request)'>
+                    <input type='button' class='btn btn-danger' value='Reject' ng-click='$ctrl.reject(request)'>
+                </div>            
+            </div>
         </div>
     </div>
     
     <div id='accepted-requests' ng-show='$ctrl.acceptedRequests.length >= 1'>
         <h2>Accepted Requests</h2>
-        <div ng-repeat='request in $ctrl.acceptedRequests'>
-            <img ng-src='{{request.book.thumbnail}}'>
+        <div class='books-container'>
+            <div ng-repeat='request in $ctrl.acceptedRequests' class='book'>
+                <img class='book-thumbnail' ng-src='{{request.book.thumbnail}}'>
+            </div>
         </div>
     </div>
 </div>

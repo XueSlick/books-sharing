@@ -1,9 +1,9 @@
 /* CSS declarations go here */
 
-.book {
-    margin-bottom: 15px;
-}
-
 .error {
     color: red
+}
+
+.not-visible {
+    visibility: hidden;
 }

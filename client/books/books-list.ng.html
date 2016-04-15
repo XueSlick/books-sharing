@@ -6,10 +6,10 @@
       <a href='#' ng-click='$ctrl.showAll()' data-toggle='tab'>All</a>
   </li>
 </ul>
-<div id='books'>
+<div id='books' class='books-container'>
     <div class='book' ng-repeat='book in $ctrl.books'>
-        <img ng-src='{{book.image || book.thumbnail}}'>
+        <img class='book-thumbnail' ng-src='{{book.thumbnail}}'>
         <br>
-        <input type='button' class='btn btn-primary' value='Request' ng-hide='!book.available' ng ng-click='$ctrl.requestBook(book)'>
+        <input type='button' class='btn btn-primary' value='Request'  ng-class='{"not-visible": !book.available}' ng-click='$ctrl.requestBook(book)'>
     </div>
 </div>
