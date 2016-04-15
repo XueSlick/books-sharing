@@ -32,12 +32,9 @@ angular.module('booksrus', dependencies)
         }
     })
     .state('notfound', {
-        url: '/error/notfound',
-        template: '<error-not-found></error-not-found>'
+        url: '*path',
+        template: '<h1>The page you\'re looking for isn\'t here :(</h1>'
     })
-    
-    $urlRouterProvider.otherwise('/error/notfound');
-    
 })
 .run(function run($rootScope, $state) {
     'ngInject'
