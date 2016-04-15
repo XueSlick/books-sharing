@@ -4,24 +4,24 @@
             <span id='brand'>BooksRUs</span>
             <div ng-hide='$ctrl.username()'>
                  <ul class='nav navbar-nav navbar-right'>
-                    <li>
+                    <li ng-class='{"active": $ctrl.isActive("/auth/register")}'>
                         <a href='/auth/register'> Sign Up</a>
                     </li>
-                    <li>
+                    <li ng-class='{"active": $ctrl.isActive("/auth/login")}'>
                         <a href='/auth/login'> Login</a>
                     </li>
                 </ul>
             </div>
             <div ng-show='$ctrl.username()'>
                 <ul class='nav navbar-nav navbar-left'>
-                    <li>
+                    <li ng-class='{"active": $ctrl.isActive("/books/mybooks")}'>
                         <a href='/books/mybooks'>My Books</a>
                     </li>
-                    <li>
+                    <li ng-class='{"active": $ctrl.isActive("/books")}'>
                         <a href='/books'>All Books</a>
                     </li>
-                    <li>
-                        <a href='requests'>Requests</a>
+                    <li ng-class='{"active": $ctrl.isActive("/requests")}'>
+                        <a href='/requests'>Requests</a>
                     </li>
                 </ul>
                 <ul class='nav navbar-nav navbar-right'>
