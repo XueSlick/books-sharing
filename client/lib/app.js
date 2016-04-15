@@ -23,7 +23,13 @@ angular.module('booksrus', dependencies)
     
     $stateProvider
     .state('home', {
-        url: '/'
+        url: '/',
+        controller: function redirect($state) {
+            //TODO: Remove after creating home page
+            if(!Meteor.user())
+                return $state.go('login')
+            $state.go('allBooks')
+        }
     })
     .state('notfound', {
         url: '/error/notfound',
