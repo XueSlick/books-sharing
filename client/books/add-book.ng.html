@@ -1,27 +1,29 @@
-<form ng-submit='$ctrl.findBooks()'>
-    <div class='input-group'>
-        <input type='text' class='form-control' ng-model='$ctrl.title' id='newBook' ng-disabled='$ctrl.awaitingResponse' 
-            tabindex='1' placeholder='Title' autocomplete='off' autofocus
-        >
-        <span class='input-group-btn'>
-            <input type='submit' class='btn btn-success' id='findBooksBtn' value='Search' ng-hide='$ctrl.awaitingResponse' ng-disabled='!$ctrl.title'>
-            <img alt='loading...' src='/images/loader-pacman.gif' ng-show='$ctrl.awaitingResponse'>
-        </span>
-    </div>
-    <div class='error'>
-        <span id='errorMessage' ng-show='error'>{{error}}</span>
-    </div>
-</form>
-    
-<div id='books-container' ng-show='$ctrl.matchingBooks'>
-    <div id='results' class='books-container' ng-show='$ctrl.matchingBooks.length > 0'>
-        <h2>Matching Books</h2>
-        <div class='book' ng-repeat='book in $ctrl.matchingBooks' ng-click='$ctrl.addBook(book)'>
-            <img class='book-thumbnail' ng-src='{{book.thumbnail}}'>
-            <span>{{book.title}} by {{book.authors.join(', ')}}</span>
+<div id='add-book-form'>
+    <form ng-submit='$ctrl.findBooks()'>
+        <div class='input-group'>
+            <input type='text' class='form-control' ng-model='$ctrl.title' id='newBook' ng-disabled='$ctrl.awaitingResponse' 
+                tabindex='1' placeholder='Title' autocomplete='off' autofocus
+            >
+            <span class='input-group-btn'>
+                <input type='submit' class='btn btn-success' id='findBooksBtn' value='Search' ng-hide='$ctrl.awaitingResponse' ng-disabled='!$ctrl.title'>
+                <img alt='loading...' src='/images/loader-pacman.gif' ng-show='$ctrl.awaitingResponse'>
+            </span>
+        </div>
+        <div class='error'>
+            <span id='errorMessage' ng-show='error'>{{error}}</span>
+        </div>
+    </form>
+</div>
+        
+    <div id='books-container' ng-show='$ctrl.matchingBooks'>
+        <div id='results' class='books-container' ng-show='$ctrl.matchingBooks.length > 0'>
+            <h2>Matching Books</h2>
+            <div class='book' ng-repeat='book in $ctrl.matchingBooks' ng-click='$ctrl.addBook(book)'>
+                <img class='book-thumbnail' ng-src='{{book.thumbnail}}'>
+                <span>{{book.title}} by {{book.authors.join(', ')}}</span>
+            </div>
+        </div>
+        <div id='error-message' class='error' ng-show='$ctrl.matchingBooks.length == 0'>
+            <span>There are no books with that title. Please try a different title.</span>
         </div>
     </div>
-    <div id='error-message' class='error' ng-show='$ctrl.matchingBooks.length == 0'>
-        <span>There are no books with that title. Please try a different title.</span>
-    </div>
-</div>
