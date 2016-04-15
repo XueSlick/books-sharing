@@ -5,8 +5,9 @@
             <div ng-repeat='request in $ctrl.usersRequests' class='book' ng-show='$ctrl.usersRequests'>
                 <img class='book-thumbnail' ng-src='{{request.book.thumbnail}}'>
                 <span ng-class='$ctrl.getStatusColorClass(request)'>{{$ctrl.statusText(request)}}</span>
-                <button class='btn btn-danger' ng-click='$ctrl.cancel(request)' aria-label="Left Align" ng-class='{"not-visible": !$ctrl.isPending(request)}'>
-                        <span class='glyphicon glyphicon-remove' title='Cancel request' aria-hidden='true'></span>
+                <button class='btn btn-danger' ng-click='$ctrl.cancel(request)' title='Cancel request'
+                        aria-label="Left Align" ng-class='{"not-visible": !$ctrl.isPending(request)}'>
+                    <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
                 </button>
                 
             </div>
