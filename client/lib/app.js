@@ -26,7 +26,7 @@ angular.module('booksrus', dependencies)
         url: '/',
         controller: function redirect($state) {
             //TODO: Remove after creating home page
-            if(!Meteor.user())
+            if(!Meteor.userId())
                 return $state.go('login')
             $state.go('allBooks')
         }
