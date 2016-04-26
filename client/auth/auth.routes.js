@@ -3,7 +3,7 @@ import angular from 'angular'
 import './auth.modules'
 
 angular.module('booksrus.auth.routes')
-.config(function($stateProvider) {    
+.config(['$stateProvider', function($stateProvider) {    
     $stateProvider
     .state('login', {
         url: '/auth/login',
@@ -17,4 +17,4 @@ angular.module('booksrus.auth.routes')
         url: '/auth/logout',
         template: '<logout></logout>'
     })
-})
+}])

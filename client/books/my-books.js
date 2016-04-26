@@ -5,7 +5,7 @@ import './books.modules'
 import { Books } from '../../imports/api/books'
 
 class MyBooksController {
-    constructor($scope,) {      
+    constructor($scope) { 
         $scope.viewModel(this)
         this.subscribe('books')
         

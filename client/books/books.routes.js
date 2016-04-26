@@ -3,7 +3,7 @@ import angular from 'angular'
 import './books.modules'
 
 angular.module('booksrus.books.routes')
-.config(function($stateProvider, routeAuthenticationProvider) {
+.config(['$stateProvider', 'routeAuthenticationProvider', function($stateProvider, routeAuthenticationProvider) {
     $stateProvider
     .state('allBooks', {
         url: '/books',
@@ -15,4 +15,4 @@ angular.module('booksrus.books.routes')
         template: '<my-books></my-books>',
         resolve: routeAuthenticationProvider.check
     })
-})
+}])
